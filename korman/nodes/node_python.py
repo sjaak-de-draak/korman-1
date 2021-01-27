@@ -93,6 +93,7 @@ _attrib_key_types = {
 class StringVectorProperty(bpy.types.PropertyGroup):
     value = StringProperty()
 
+bpy.utils.register_class(StringVectorProperty)
 
 class PlasmaAttributeArguments(bpy.types.PropertyGroup):
     byObject = BoolProperty()
@@ -134,6 +135,7 @@ class PlasmaAttributeArguments(bpy.types.PropertyGroup):
             else:
                 print("Unknown argument '{}' with value '{}'!".format(name, args[name]))
 
+bpy.utils.register_class(PlasmaAttributeArguments)
 
 class PlasmaAttribute(bpy.types.PropertyGroup):
     attribute_id = IntProperty()
@@ -168,6 +170,7 @@ class PlasmaAttribute(bpy.types.PropertyGroup):
         setattr(self, self._simple_attrs[self.attribute_type], value)
     simple_value = property(_get_simple_value, _set_simple_value)
 
+bpy.utils.register_class(PlasmaAttribute)
 
 class PlasmaPythonFileNode(PlasmaVersionedNode, bpy.types.Node):
     bl_category = "PYTHON"

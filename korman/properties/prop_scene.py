@@ -41,6 +41,7 @@ class PlasmaBakePass(bpy.types.PropertyGroup):
                                        size=_NUM_RENDER_LAYERS,
                                        default=((True,) * _NUM_RENDER_LAYERS))
 
+bpy.utils.register_class(PlasmaBakePass)
 
 class PlasmaWetDecalRef(bpy.types.PropertyGroup):
     enabled = BoolProperty(name="Enabled",
@@ -51,6 +52,7 @@ class PlasmaWetDecalRef(bpy.types.PropertyGroup):
                           description="Wet decal manager",
                           options=set())
 
+bpy.utils.register_class(PlasmaWetDecalRef)
 
 class PlasmaDecalManager(bpy.types.PropertyGroup):
     def _get_display_name(self):
@@ -127,6 +129,7 @@ class PlasmaDecalManager(bpy.types.PropertyGroup):
     wet_managers = CollectionProperty(type=PlasmaWetDecalRef)
     active_wet_index = IntProperty(options={"HIDDEN"})
 
+bpy.utils.register_class(PlasmaDecalManager)
 
 class PlasmaScene(bpy.types.PropertyGroup):
     bake_passes = CollectionProperty(type=PlasmaBakePass)

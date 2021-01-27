@@ -57,6 +57,7 @@ class PlasmaTransition(bpy.types.PropertyGroup):
                            description="The camera immediately moves to its new position",
                            options=set())
 
+bpy.utils.register_class(PlasmaTransition)
 
 class PlasmaManualTransition(bpy.types.PropertyGroup):
     camera = PointerProperty(name="Camera",
@@ -77,6 +78,7 @@ class PlasmaManualTransition(bpy.types.PropertyGroup):
                            default=True,
                            options=set())
 
+bpy.utils.register_class(PlasmaManualTransition)
 
 class PlasmaCameraProperties(bpy.types.PropertyGroup):
     # Point of Attention
@@ -240,6 +242,7 @@ class PlasmaCameraProperties(bpy.types.PropertyGroup):
                 actors.add(self.circle_center.name)
         return actors
 
+bpy.utils.register_class(PlasmaCameraProperties)
 
 class PlasmaCamera(bpy.types.PropertyGroup):
     camera_type = EnumProperty(name="Camera Type",

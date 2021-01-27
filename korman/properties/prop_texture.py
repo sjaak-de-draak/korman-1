@@ -29,6 +29,7 @@ class EnvMapVisRegion(idprops.IDPropObjectMixin, bpy.types.PropertyGroup):
     def _idprop_mapping(cls):
         return {"control_region": "region_name"}
 
+bpy.utils.register_class(EnvMapVisRegion)
 
 class PlasmaLayer(bpy.types.PropertyGroup):
     bl_idname = "texture.plasma_layer"
