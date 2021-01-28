@@ -55,6 +55,7 @@ class PlasmaFni(bpy.types.PropertyGroup):
                       soft_min=100,
                       min=1)
 
+bpy.utils.register_class(PlasmaFni)
 
 class PlasmaGames(bpy.types.PropertyGroup):
     bl_idname = "world.plasma_games"
@@ -72,6 +73,7 @@ class PlasmaGames(bpy.types.PropertyGroup):
     def is_game_active(self):
         return len(self.games) > 0 and self.active_game_index != -1
 
+bpy.utils.register_class(PlasmaGames)
 
 class PlasmaPage(bpy.types.PropertyGroup):
     bl_idname = "world.plasma_page"
@@ -190,3 +192,5 @@ class PlasmaAge(bpy.types.PropertyGroup):
 
     # Implementation details
     active_page_index = IntProperty(name="Active Page Index")
+
+bpy.utils.register_class(PlasmaAge)

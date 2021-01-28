@@ -23,17 +23,19 @@ class AgeButtonsPanel:
     bl_space_type = "PROPERTIES"
     bl_region_type = "WINDOW"
     bl_context = "world"
+    bl_name = "AgeButtonsPanel"
 
     @classmethod
     def poll(cls, context):
         return context.world and context.scene.render.engine == "PLASMA_GAME"
 
+#bpy.utils.register_class(AgeButtonsPanel)
 
 class PlasmaGameHelper:
     @property
     def active_game(self):
         games = bpy.context.world.plasma_games
-        prefs = bpy.context.user_preferences.addons["korman"].preferences
+        prefs = bpy.context.preferences.addons["korman"].preferences
         active_game_index = games.active_game_index
         if active_game_index < len(prefs.games):
             return prefs.games[active_game_index]
@@ -52,6 +54,7 @@ class PlasmaGameHelper:
         if self.active_game is not None:
             return bool(bpy.context.world.plasma_age.age_name.strip())
 
+#bpy.utils.register_class(PlasmaGameHelper)
 
 class PlasmaGameExportMenu(PlasmaGameHelper, bpy.types.Menu):
     bl_label = "Plasma Export Menu"
@@ -107,13 +110,14 @@ class PlasmaGameExportMenu(PlasmaGameHelper, bpy.types.Menu):
             op.filepath = "{}.zip".format(age_name)
             op.version = active_game.version
 
+bpy.utils.register_class(PlasmaGameExportMenu)
 
 class PlasmaGamePanel(AgeButtonsPanel, PlasmaGameHelper, bpy.types.Panel):
     bl_label = "Plasma Games"
 
     def draw(self, context):
         layout = self.layout
-        prefs = context.user_preferences.addons["korman"].preferences
+        prefs = context.preferences.addons["korman"].preferences
         games = context.world.plasma_games
         age = context.world.plasma_age
         active_game = self.active_game
@@ -158,6 +162,7 @@ class PlasmaGamePanel(AgeButtonsPanel, PlasmaGameHelper, bpy.types.Panel):
         row.enabled = True
         row.menu("PlasmaGameExportMenu", icon='DOWNARROW_HLT', text="")
 
+bpy.utils.register_class(PlasmaGamePanel)
 
 class PlasmaGameListRO(bpy.types.UIList):
     def draw_item(self, context, layout, data, item, icon, active_data, active_property, index=0, flt_flag=0):
@@ -254,6 +259,7 @@ class PlasmaAgePanel(AgeButtonsPanel, bpy.types.Panel):
         layout.prop(age, "python_method")
         layout.prop(age, "texcache_method")
 
+bpy.utils.register_class(PlasmaAgePanel)
 
 class PlasmaEnvironmentPanel(AgeButtonsPanel, bpy.types.Panel):
     bl_label = "Plasma Environment"
@@ -283,3 +289,5 @@ class PlasmaEnvironmentPanel(AgeButtonsPanel, bpy.types.Panel):
         col = split.column()
         col.label("Draw Settings:")
         col.prop(fni, "yon", text="Clipping")
+
+bpy.utils.register_class(PlasmaEnvironmentPanel)
