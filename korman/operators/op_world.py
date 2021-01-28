@@ -32,7 +32,7 @@ class GameAddOperator(AgeOperator, bpy.types.Operator):
     game_index = IntProperty(default=-1, options={"HIDDEN"})
 
     def execute(self, context):
-        prefs = context.user_preferences.addons["korman"].preferences
+        prefs = context.preferences.addons["korman"].preferences
 
         # First, verify this is a valid Uru directory...
         path = Path(self.filepath)
@@ -77,7 +77,7 @@ class GameConvertOperator(AgeOperator, bpy.types.Operator):
         self.layout.label("test")
 
     def execute(self, context):
-        prefs = context.user_preferences.addons["korman"].preferences
+        prefs = context.preferences.addons["korman"].preferences
         w = context.scene.world
 
         for old_game in w.plasma_games.games:
@@ -108,7 +108,7 @@ class GameRemoveOperator(AgeOperator, bpy.types.Operator):
     bl_label = "Remove Plasma Game"
 
     def execute(self, context):
-        prefs = context.user_preferences.addons["korman"].preferences
+        prefs = context.preferences.addons["korman"].preferences
 
         if prefs.active_game_index >= len(prefs.games):
             return {"CANCELLED"}

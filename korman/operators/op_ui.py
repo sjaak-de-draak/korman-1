@@ -97,7 +97,7 @@ class OpenAddonPrefs(UIOperator, bpy.types.Operator):
 
     def execute(self, context):
         bpy.ops.screen.userpref_show("INVOKE_DEFAULT")
-        context.user_preferences.active_section = "ADDONS"
+        context.preferences.active_section = "ADDONS"
         context.window_manager.addon_filter = "System"
         korman_addon = addon_utils.addons_fake_modules["korman"]
         addon_utils.module_bl_info(korman_addon)["show_expanded"] = True

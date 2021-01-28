@@ -87,7 +87,7 @@ def _find_python(py_version):
         except ImportError:
             pass
         else:
-            userprefs = bpy.context.user_preferences.addons["korman"].preferences
+            userprefs = bpy.context.preferences.addons["korman"].preferences
             py_executable = getattr(userprefs, "python{}{}_executable".format(*py_version), None)
             if verify_python(py_version, py_executable):
                 return py_executable
