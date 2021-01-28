@@ -147,8 +147,8 @@ class KormanAddonPreferences(bpy.types.AddonPreferences):
         row.template_list("PlasmaGameListRW", "games", self, "games", self,
                           "active_game_index", rows=3)
         col = row.column(align=True)
-        col.operator("world.plasma_game_add", icon="ZOOM_IN", text="")
-        col.operator("world.plasma_game_remove", icon="ZOOM_OUT", text="")
+        col.operator("world.plasma_game_add", icon="ADD", text="")
+        col.operator("world.plasma_game_remove", icon="REMOVE", text="")
         col.operator("world.plasma_game_convert", icon="IMPORT", text="")
 
         # Game Properties
